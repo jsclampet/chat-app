@@ -14,6 +14,12 @@
 - Learn PostgreSQL
 
 ____________________
+## Extra
+
+- Responsive code 
+  - Make it look nice for mobile ??? 
+
+____________________
 
 # Coming Up 
 
@@ -22,3 +28,10 @@ ____________________
 - Learn WebSockets
 - Learn JWT
 
+____________________
+
+Tech Stack
+- React
+- TypeScript
+- BootStrap
+- 
