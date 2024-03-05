@@ -18,6 +18,8 @@ ____________________
 
 - Responsive code 
   - Make it look nice for mobile ??? 
+    - @ 945px ??? 
+    - Max Width for Home page? 
 
 ____________________
 

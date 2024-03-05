@@ -16,6 +16,10 @@ const Register = ({ onClick }: Props) => {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" className="form-control" />
         </div>
+        <div className="form-group">
+          <label htmlFor="password">Confirm Password</label>
+          <input type="password" id="password" className="form-control" />
+        </div>
         <button type="submit" className="btn btn-success log-in-btn">
           Register
         </button>

@@ -4,7 +4,7 @@ import Register from "../../components/Register/Register";
 import "./Home.css";
 
 const Home = () => {
-  const [isUser, setIsUser] = useState(true);
+  const [isUser, setIsUser] = useState(false);
   const switchView = () => setIsUser(!isUser);
   const content = isUser ? (
     <LogIn onClick={switchView} />
@@ -17,6 +17,7 @@ const Home = () => {
       <div className={isUser ? "home-container" : "home-container reverse"}>
         <div className="content">
           <h1 className="app-title">ZenChat</h1>
+          {isUser ? <p>Member Log-in</p> : <p>Create an account</p>}
           {content}
         </div>
         <div
