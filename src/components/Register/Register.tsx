@@ -16,16 +16,20 @@ const Register = ({ onClick }: Props) => {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" className="form-control" />
         </div>
-        <button type="submit" className="btn btn-primary log-in-btn">
-          Log In
+        <button type="submit" className="btn btn-success log-in-btn">
+          Register
         </button>
         <div className="divider">
           <div className="left"></div>
           <p className="divider-text">OR</p>
           <div className="right"></div>
         </div>
-        <button className="btn btn-success log-in-btn" onClick={onClick}>
-          Sign Up!
+        <p>Already have an account?</p>
+        <button
+          className="btn btn-outline-primary log-in-btn"
+          onClick={onClick}
+        >
+          Log In
         </button>
       </form>
     </div>

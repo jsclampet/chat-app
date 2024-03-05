@@ -23,7 +23,11 @@ const LogIn = ({ onClick }: Props) => {
           <p className="divider-text">OR</p>
           <div className="right"></div>
         </div>
-        <button className="btn btn-success log-in-btn" onClick={onClick}>
+        <p>Create an account!</p>
+        <button
+          className="btn btn-outline-success log-in-btn"
+          onClick={onClick}
+        >
           Sign Up!
         </button>
       </form>

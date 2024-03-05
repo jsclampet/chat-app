@@ -6,11 +6,15 @@ import "./Home.css";
 const Home = () => {
   const [isUser, setIsUser] = useState(true);
   const switchView = () => setIsUser(!isUser);
-  const content = isUser ? <Register onClick={switchView} /> : <LogIn />;
+  const content = isUser ? (
+    <LogIn onClick={switchView} />
+  ) : (
+    <Register onClick={switchView} />
+  );
 
   return (
     <>
-      <div className={isUser ? "home-container" : "home-container-reverse"}>
+      <div className={isUser ? "home-container" : "home-container reverse"}>
         <div className="content">
           <h1 className="app-title">ZenChat</h1>
           {content}
