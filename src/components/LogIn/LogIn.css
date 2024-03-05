@@ -1,0 +1,40 @@
+.log-in-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  background: none;
+}
+.log-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-group {
+  width: 400px;
+  margin-bottom: 25px;
+}
+.log-in-btn {
+  width: 250px;
+  margin-bottom: 30px;
+}
+.divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.divider {
+  margin-bottom: 30px;
+}
+.divider > .left,
+.divider > .right {
+  height: .5px;
+  width: 130px;
+  border: black .5px solid;
+}
+.divider > .divider-text {
+  transform: translateY(30%);
+  padding: 0 20px;
+}

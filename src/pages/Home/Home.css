@@ -1,0 +1,34 @@
+
+.app-title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.home-container {
+  display: flex;
+  height: 80vh;
+}
+.home-container-reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 80vh;
+}
+.home-container .content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.home-container .home-background-image {
+  width: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 45px;
+}
+.keyboard-img {
+  background-image: url('/keyboard_hello.jpg');
+}
+.stock-model-img {
+  background-image: url('/stock-model.jpg');
+}
