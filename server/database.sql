@@ -1,0 +1,1 @@
+CREATE TABLE messages(chat_id SERIAL PRIMARY KEY, body TEXT)
