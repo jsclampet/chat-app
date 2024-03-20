@@ -10,8 +10,9 @@
 2. Registration >>> Storing Username and password
 3. Log In >>> Compare data vs what is stored
 
-- Learn SQL 
-- Learn PostgreSQL
+- Connect database (psql, SQL, Postgres)
+- Learn WebSockets
+- Learn JWT
 
 ____________________
 ## Extra
@@ -19,17 +20,7 @@ ____________________
 - Responsive code 
   - Make it look nice for mobile ??? 
     - @ 945px ??? 
-    - Max Width for Home page? 
-
-____________________
-
-# Coming Up 
-
-## Chat
-
-- Learn WebSockets
-- Learn JWT
-
+    - Max Width for Home page?
 ____________________
 
 Tech Stack
@@ -37,4 +28,21 @@ Tech Stack
 - TypeScript
 - BootStrap
 - React Router
-- 
+- dotenv
+- NodeJS
+- Express
+
+Libraries
+-node-pg
+
+__________________________
+
+# SIGN-ON Authentication
+Maybe have a few stops
+1. Form validation
+2. API call
+3. Node server sends SQL command to database
+4. Node server does the following
+   1. Checks if username exists in table
+   2. Checks if password in username row
+5. Allows sign-in
