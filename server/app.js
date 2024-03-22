@@ -25,7 +25,7 @@ app.post("/signup", async (req, res) => {
       [username, password]
     );
 
-    res.send(register.rows);
+    res.send(register);
   } catch (error) {
     console.log(error);
   }
