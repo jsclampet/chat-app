@@ -1,3 +1,4 @@
+import axios from "axios";
 import "./Register.css";
 import { useForm } from "react-hook-form";
 
@@ -7,12 +8,24 @@ interface Props {
 
 const Register = ({ onClick }: Props) => {
   const { register, handleSubmit } = useForm();
+  const createAccount = async (userInput) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3004/signup",
+        userInput
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="register-container">
       <form
         className="log-in-form"
         onSubmit={handleSubmit((data) => {
+          createAccount(data);
           console.log(data);
         })}
       >

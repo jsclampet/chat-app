@@ -34,6 +34,9 @@ Tech Stack
 
 Libraries
 -node-pg
+-express
+-react-hook-form
+-axios
 
 __________________________
 
