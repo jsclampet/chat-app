@@ -4,6 +4,19 @@ import { useForm } from "react-hook-form";
 interface Props {
   onClick: () => void;
 }
+
+const authenticate = (credentials, database) => {
+  //find if user exists in db
+  //--YES?
+  //----See if entered password matches whats in the db
+  //------YES?
+  //--------Sign in successful, re-direct
+  //------NO?
+  //--------Incorrect password
+  //--NO?
+  //----User profile not found
+};
+
 const LogIn = ({ onClick }: Props) => {
   const { register, handleSubmit } = useForm();
 
