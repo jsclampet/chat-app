@@ -7,39 +7,26 @@ interface Props {
 }
 
 const authenticate = (credentials, database) => {
-  database.forEach((row) =>
-    console.log({ row: row.username, credentials: credentials.username })
-  );
   const user = database.find((row) => {
     return credentials.username === row.username;
   });
-  console.log("user", user);
   if (!user) return "Username not found";
   if (credentials.password === user.password) return "Authenticated";
   else return "Incorrect Password";
 };
 
-// const onSubmit = handleSubmit(async (data) => {
-//   const usernameDatabase = await axios.get("http://localhost:3004/users");
-//   const authResult = authenticate(data, usernameDatabase.data);
-//   console.log(authResult);
-// });
+const onSubmit = async (data) => {
+  const usernameDatabase = await axios.get("http://localhost:3004/users");
+  const authResult = authenticate(data, usernameDatabase.data);
+  console.log(authResult);
+};
 
 const LogIn = ({ onClick }: Props) => {
   const { register, handleSubmit } = useForm();
 
   return (
     <div className="log-in-container">
-      <form
-        className="log-in-form"
-        onSubmit={handleSubmit(async (data) => {
-          const usernameDatabase = await axios.get(
-            "http://localhost:3004/users"
-          );
-          const authResult = authenticate(data, usernameDatabase.data);
-          console.log(authResult);
-        })}
-      >
+      <form className="log-in-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
@@ -79,6 +66,3 @@ const LogIn = ({ onClick }: Props) => {
 };
 
 export default LogIn;
-function handleSubmit(arg0: (data: any) => Promise<void>) {
-  throw new Error("Function not implemented.");
-}
