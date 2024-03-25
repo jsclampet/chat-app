@@ -1,3 +1,4 @@
+import axios from "axios";
 import "./LogIn.css";
 import { useForm } from "react-hook-form";
 
@@ -6,16 +7,23 @@ interface Props {
 }
 
 const authenticate = (credentials, database) => {
-  //find if user exists in db
-  //--YES?
-  //----See if entered password matches whats in the db
-  //------YES?
-  //--------Sign in successful, re-direct
-  //------NO?
-  //--------Incorrect password
-  //--NO?
-  //----User profile not found
+  database.forEach((row) =>
+    console.log({ row: row.username, credentials: credentials.username })
+  );
+  const user = database.find((row) => {
+    return credentials.username === row.username;
+  });
+  console.log("user", user);
+  if (!user) return "Username not found";
+  if (credentials.password === user.password) return "Authenticated";
+  else return "Incorrect Password";
 };
+
+// const onSubmit = handleSubmit(async (data) => {
+//   const usernameDatabase = await axios.get("http://localhost:3004/users");
+//   const authResult = authenticate(data, usernameDatabase.data);
+//   console.log(authResult);
+// });
 
 const LogIn = ({ onClick }: Props) => {
   const { register, handleSubmit } = useForm();
@@ -24,8 +32,12 @@ const LogIn = ({ onClick }: Props) => {
     <div className="log-in-container">
       <form
         className="log-in-form"
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
+        onSubmit={handleSubmit(async (data) => {
+          const usernameDatabase = await axios.get(
+            "http://localhost:3004/users"
+          );
+          const authResult = authenticate(data, usernameDatabase.data);
+          console.log(authResult);
         })}
       >
         <div className="form-group">
@@ -67,3 +79,6 @@ const LogIn = ({ onClick }: Props) => {
 };
 
 export default LogIn;
+function handleSubmit(arg0: (data: any) => Promise<void>) {
+  throw new Error("Function not implemented.");
+}

@@ -14,7 +14,10 @@ const Register = ({ onClick }: Props) => {
         "http://localhost:3004/signup",
         userInput
       );
-      console.log(response);
+      console.log(
+        "createAccount function ||  response >>> frontend|axios",
+        response
+      );
     } catch (error) {
       console.log(error);
     }
@@ -26,7 +29,7 @@ const Register = ({ onClick }: Props) => {
         className="log-in-form"
         onSubmit={handleSubmit((data) => {
           createAccount(data);
-          console.log(data);
+          console.log("react-hook-form Data >>> >>> >> ", data);
         })}
       >
         <div className="form-group">
@@ -39,10 +42,10 @@ const Register = ({ onClick }: Props) => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="registration-password">Password</label>
           <input
             type="password"
-            id="password"
+            id="registration-password"
             className="form-control"
             {...register("password")}
           />
