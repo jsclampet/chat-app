@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./Register.css";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 interface Props {
   onClick: () => void;
@@ -8,7 +8,7 @@ interface Props {
 
 const Register = ({ onClick }: Props) => {
   const { register, handleSubmit } = useForm();
-  const createAccount = async (userInput) => {
+  const createAccount = async (userInput: FieldValues) => {
     try {
       const response = await axios.post(
         "http://localhost:3004/signup",
@@ -64,6 +64,7 @@ const Register = ({ onClick }: Props) => {
         </div>
         <p>Already have an account?</p>
         <button
+          type="button"
           className="btn btn-outline-primary log-in-btn"
           onClick={onClick}
         >

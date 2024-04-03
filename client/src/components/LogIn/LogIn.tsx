@@ -1,12 +1,12 @@
 import axios from "axios";
 import "./LogIn.css";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 
 interface Props {
   onClick: () => void;
 }
 
-const onSubmit = async (data) => {
+const onSubmit = async (data: FieldValues) => {
   try {
     const logIn = await axios.post("http://localhost:3004/login", data);
     console.log(logIn);
