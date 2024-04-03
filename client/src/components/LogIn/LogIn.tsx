@@ -6,19 +6,13 @@ interface Props {
   onClick: () => void;
 }
 
-const authenticate = (credentials, database) => {
-  const user = database.find((row) => {
-    return credentials.username === row.username;
-  });
-  if (!user) return "Username not found";
-  if (credentials.password === user.password) return "Authenticated";
-  else return "Incorrect Password";
-};
-
 const onSubmit = async (data) => {
-  const usernameDatabase = await axios.get("http://localhost:3004/users");
-  const authResult = authenticate(data, usernameDatabase.data);
-  console.log(authResult);
+  try {
+    const logIn = await axios.post("http://localhost:3004/login", data);
+    console.log(logIn);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const LogIn = ({ onClick }: Props) => {

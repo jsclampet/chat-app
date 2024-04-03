@@ -8,7 +8,7 @@ const pool = require("./db");
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "..", "client")));
+// app.use(express.static(path.join(__dirname, "..", "client")));
 
 // 1. Register
 // 2. Login
@@ -61,8 +61,10 @@ app.post("/login", async (req, res) => {
     const user = allUsers.rows.find((user) => user.username === username);
     if (!user) throw new Error(`User "${username}" could not be found`);
     if (user.password !== password) throw new Error("Incorrect password");
+    res.send("login works!");
+    console.log(allUsers);
+    console.log(allUsers.rows);
   } catch (err) {
-    console.error(err.message);
     res.send({
       error: `${err.message}`,
     });
