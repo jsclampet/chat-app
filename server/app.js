@@ -71,5 +71,4 @@ app.post("/login", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`port is ${port}`);
-  console.log(path.join(__dirname, "..", "client"));
 });

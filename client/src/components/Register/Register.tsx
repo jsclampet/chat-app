@@ -15,7 +15,7 @@ const Register = ({ onClick }: Props) => {
         userInput
       );
       console.log(
-        "createAccount function ||  response >>> frontend|axios",
+        "createAccount function || response >>> frontend|axios",
         response
       );
     } catch (error) {
