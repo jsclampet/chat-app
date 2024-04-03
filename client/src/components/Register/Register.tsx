@@ -19,7 +19,7 @@ const Register = ({ onClick }: Props) => {
         response
       );
     } catch (error) {
-      console.log(error);
+      console.log("ERROR FROM REGISTER FRONT-END >>> ", error);
     }
   };
 

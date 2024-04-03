@@ -1,9 +1,10 @@
-Up next ...
+# Up next ...
 - Most authentication to backend
 - Maybe break up validation and authentication
   - Authenticate only if validation === true
   - Send success response or err with specific messages
     - status code, error/response message? 
+
 
 ____________________
 ____________________

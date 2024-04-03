@@ -2,11 +2,13 @@ require("dotenv/config");
 const express = require("express");
 const app = new express();
 const port = process.env.PORT || 3004;
+const path = require("path");
 const cors = require("cors");
 const pool = require("./db");
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..", "client")));
 
 // 1. Register
 // 2. Login
@@ -19,10 +21,10 @@ app.use(express.json());
 // -------------
 
 //get ALL usernames
-app.get("/users", async (req, res) => {
+app.get("/messages", async (req, res) => {
   try {
-    const allUsers = await pool.query("SELECT * FROM usernames");
-    res.send(allUsers.rows);
+    const allChats = await pool.query("SELECT * FROM messages");
+    res.send(allChats.rows);
   } catch (error) {
     console.log(error);
   }
@@ -46,22 +48,28 @@ app.post("/signup", async (req, res) => {
   } catch (error) {
     res.send({
       error: `${error.message}`,
-      allUsers,
     });
   }
 });
 
+// LOGIN user
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  // const allUsers = await
+  const allUsers = await pool.query("SELECT * FROM usernames");
 
-  // try {
-
-  // } catch (error) {
-
-  // }
+  try {
+    const user = allUsers.rows.find((user) => user.username === username);
+    if (!user) throw new Error(`User "${username}" could not be found`);
+    if (user.password !== password) throw new Error("Incorrect password");
+  } catch (err) {
+    console.error(err.message);
+    res.send({
+      error: `${err.message}`,
+    });
+  }
 });
 
 app.listen(port, () => {
   console.log(`port is ${port}`);
+  console.log(path.join(__dirname, "..", "client"));
 });
