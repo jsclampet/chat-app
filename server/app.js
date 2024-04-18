@@ -5,6 +5,7 @@ const port = process.env.PORT || 3004;
 const path = require("path");
 const cors = require("cors");
 const pool = require("./db");
+const { hash, compare } = require("bcrypt");
 
 app.use(cors());
 app.use(express.json());
@@ -40,9 +41,11 @@ app.post("/signup", async (req, res) => {
     const user = allUsers.rows.find((user) => user.username === username);
     if (user) throw new Error("User already exists!");
 
+    const encryptedPassword = hash(password, process.env.SALT);
+
     const register = await pool.query(
       "INSERT INTO usernames (username, password) VALUES ($1, $2) RETURNING *",
-      [username, password]
+      [username, encryptedPassword]
     );
     res.send(register.rows[0]);
   } catch (error) {
