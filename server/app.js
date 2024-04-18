@@ -1,7 +1,7 @@
 require("dotenv/config");
 const express = require("express");
 const app = new express();
-const port = process.env.PORT || 3004;
+const port = process.env.PORT;
 const path = require("path");
 const cors = require("cors");
 const pool = require("./db");
@@ -41,7 +41,7 @@ app.post("/signup", async (req, res) => {
     const user = allUsers.rows.find((user) => user.username === username);
     if (user) throw new Error("User already exists!");
 
-    const encryptedPassword = hash(password, process.env.SALT);
+    const encryptedPassword = await hash(password, parseInt(process.env.SALT));
 
     const register = await pool.query(
       "INSERT INTO usernames (username, password) VALUES ($1, $2) RETURNING *",
@@ -63,7 +63,9 @@ app.post("/login", async (req, res) => {
   try {
     const user = allUsers.rows.find((user) => user.username === username);
     if (!user) throw new Error(`User "${username}" could not be found`);
-    if (user.password !== password) throw new Error("Incorrect password");
+
+    const isValid = compare(password, user.password);
+    if (!isValid) throw new Error("Incorrect password");
     res.send(user);
   } catch (err) {
     res.send({

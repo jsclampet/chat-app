@@ -8,7 +8,7 @@ interface Props {
 
 const onSubmit = async (data: FieldValues) => {
   try {
-    const logIn = await axios.post("http://localhost:3004/login", data);
+    const logIn = await axios.post("http://localhost:3008/login", data);
     console.log(logIn);
   } catch (error) {
     console.log(error);

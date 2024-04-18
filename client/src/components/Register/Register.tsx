@@ -11,7 +11,7 @@ const Register = ({ onClick }: Props) => {
   const createAccount = async (userInput: FieldValues) => {
     try {
       const response = await axios.post(
-        "http://localhost:3004/signup",
+        "http://localhost:3008/signup",
         userInput
       );
       console.log(
