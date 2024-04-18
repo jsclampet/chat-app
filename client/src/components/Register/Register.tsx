@@ -10,16 +10,9 @@ const Register = ({ onClick }: Props) => {
   const { register, handleSubmit } = useForm();
   const createAccount = async (userInput: FieldValues) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3008/signup",
-        userInput
-      );
-      console.log(
-        "createAccount function || response >>> frontend|axios",
-        response
-      );
+      await axios.post("http://localhost:3008/signup", userInput);
     } catch (error) {
-      console.log("ERROR FROM REGISTER FRONT-END >>> ", error);
+      console.log(error);
     }
   };
 
@@ -29,7 +22,6 @@ const Register = ({ onClick }: Props) => {
         className="log-in-form"
         onSubmit={handleSubmit((data) => {
           createAccount(data);
-          console.log("react-hook-form Data >>> >>> >> ", data);
         })}
       >
         <div className="form-group">
