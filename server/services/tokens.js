@@ -19,7 +19,12 @@ const sendAccessToken = (req, res, token) => {
   });
 };
 
-const sendRefreshToken = () => {};
+const sendRefreshToken = (res, token) => {
+  res.cookie("refreshToken", token, {
+    httpOnly: true,
+    path: "/refresh_token",
+  });
+};
 
 module.exports = {
   createAccessToken,

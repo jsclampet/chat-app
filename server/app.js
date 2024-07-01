@@ -6,8 +6,15 @@ const path = require("path");
 const cors = require("cors");
 const pool = require("./db");
 const { hash, compare } = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const {
+  sendRefreshToken,
+  createAccessToken,
+  createRefreshToken,
+} = require("./services/tokens");
 
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "client", "dist")));
 
@@ -66,7 +73,13 @@ app.post("/login", async (req, res) => {
 
     const isValid = compare(password, user.password);
     if (!isValid) throw new Error("Incorrect password");
-    res.send(user);
+    const accessToken = createAccessToken(username);
+    const refreshToken = createRefreshToken(username);
+    res.send({
+      username,
+      refreshToken,
+      accessToken,
+    });
   } catch (err) {
     res.send({
       error: `${err.message}`,
