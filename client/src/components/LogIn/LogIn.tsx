@@ -1,6 +1,7 @@
 import axios from "axios";
 import "./LogIn.css";
 import { FieldValues, useForm } from "react-hook-form";
+import { redirect } from "react-router-dom";
 
 interface Props {
   onClick: () => void;
@@ -10,6 +11,10 @@ const onSubmit = async (data: FieldValues) => {
   try {
     const logIn = await axios.post("http://localhost:3008/login", data);
     console.log(logIn);
+    if (logIn.status <= 400) {
+      console.log("redirect.......");
+      redirect("../../App.tsx");
+    }
   } catch (error) {
     console.log(error);
   }

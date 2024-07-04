@@ -8,7 +8,7 @@ const createAccessToken = (username) => {
 
 const createRefreshToken = (username) => {
   return sign(username, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: "7d",
+    expiresIn: "7 days",
   });
 };
 

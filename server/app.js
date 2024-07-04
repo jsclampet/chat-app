@@ -56,7 +56,7 @@ app.post("/signup", async (req, res) => {
     );
     res.send(register.rows[0]);
   } catch (error) {
-    res.send({
+    res.status(400).send({
       error: `${error.message}`,
     });
   }
@@ -81,7 +81,7 @@ app.post("/login", async (req, res) => {
       accessToken,
     });
   } catch (err) {
-    res.send({
+    res.status(400).send({
       error: `${err.message}`,
     });
   }
