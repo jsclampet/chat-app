@@ -11,10 +11,7 @@ const onSubmit = async (data: FieldValues) => {
   try {
     const logIn = await axios.post("http://localhost:3008/login", data);
     console.log(logIn);
-    if (logIn.status <= 400) {
-      console.log("redirect.......");
-      redirect("../../App.tsx");
-    }
+    redirect("../../App.tsx");
   } catch (error) {
     console.log(error);
   }
