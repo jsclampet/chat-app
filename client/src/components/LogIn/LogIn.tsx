@@ -1,22 +1,35 @@
 import axios from "axios";
 import "./LogIn.css";
 import { FieldValues, useForm } from "react-hook-form";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface Props {
   onClick: () => void;
 }
 
-const onSubmit = async (data: FieldValues) => {
-  try {
-    const logIn = await axios.post("http://localhost:3008/login", data);
-    console.log(logIn);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const LogIn = ({ onClick }: Props) => {
+  const navigate = useNavigate();
+  const [isAuth, setIsAuth] = useState(false);
+
+  const onSubmit = async (data: FieldValues) => {
+    setIsAuth(false);
+    try {
+      const res = await axios.post("http://localhost:3008/login", data);
+      res;
+      console.log(res);
+      setIsAuth(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/messenger");
+    }
+  }, [isAuth]);
+
   const { register, handleSubmit } = useForm();
 
   return (

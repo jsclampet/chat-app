@@ -73,6 +73,7 @@ app.post("/login", async (req, res) => {
 
     const isValid = compare(password, user.password);
     if (!isValid) throw new Error("Incorrect password");
+
     const accessToken = createAccessToken(username);
     const refreshToken = createRefreshToken(username);
     res.send({
