@@ -8,6 +8,7 @@ const pool = require("./db");
 const { hash, compare } = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const {
+  sendAccessToken,
   sendRefreshToken,
   createAccessToken,
   createRefreshToken,
@@ -76,11 +77,9 @@ app.post("/login", async (req, res) => {
 
     const accessToken = createAccessToken(username);
     const refreshToken = createRefreshToken(username);
-    res.send({
-      username,
-      refreshToken,
-      accessToken,
-    });
+
+    sendRefreshToken(res, refreshToken);
+    sendAccessToken(req, res, accessToken);
   } catch (err) {
     res.status(400).send({
       error: `${err.message}`,
