@@ -72,7 +72,8 @@ app.post("/login", async (req, res) => {
     const user = allUsers.rows.find((user) => user.username === username);
     if (!user) throw new Error(`User "${username}" could not be found`);
 
-    const isValid = compare(password, user.password);
+    const isValid = await compare(password, user.password);
+    console.log("isValid equates to: >>> ", isValid);
     if (!isValid) throw new Error("Incorrect password");
 
     const accessToken = createAccessToken(username);
